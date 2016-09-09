@@ -17,6 +17,11 @@ SESSION=$USER
 # Then:
 #	sudo tmux kill-session -t <name from above command>
 
+
+#TODO:
+#
+#	config file
+
 connect(){
 
 	tmux new-window 
@@ -24,8 +29,10 @@ connect(){
 	tmux split-window -v
 
 	tmux select-pane -t 0
+	
+	ip=$1@$3.local
 
-	ssh="sshpass -p $2 ssh -X $1@192.168.1.$3"
+	ssh="sshpass -p $2 ssh -X $ip"
 	tmux send-keys "$ssh" C-m
 	
 	tmux send-keys "cd SDR/SDR/Flowgraphs" C-m
@@ -35,6 +42,7 @@ connect(){
 	tmux send-keys "$ssh" C-m
 	tmux send-keys "sleep 10s" C-m
 	tmux send-keys "echo $2 | sudo -S sh ~/SDR/SDR/WebInterface/static/shell/raiseBatSignal.sh" C-m
+	
 	tmux send-keys "echo $2 | sudo -S ifconfig bat0 192.168.200.$3" C-m
 
 	tmux send-keys "sleep 10s" C-m
@@ -50,28 +58,20 @@ pass='vtclab'
 
 
 # IP List
-# 192.168.1.100
-# 192.168.1.101
-# 192.168.1.102
-# 192.168.1.106
-# 192.168.1.107
-# 192.168.1.109
+#Create file of local ubuntu ips
+avahi-browse -tl _workstation._tcp | grep IPv4 | awk '{print $4}' > local_ips.txt
 
-#IP = (100, 101, 102, 106, 107, 109)
 
-IP[0]="100"
-IP[1]="101"
-IP[2]="103"
-IP[3]="104"
-IP[4]="106"
 
 # Start Session
 tmux -2 new-session -d -s $SESSION
 
-for ip in "${IP[@]}"
-do
+#read file line by line
+while read ip; do
+	#connect each machine
+	echo "Connecting $ip..."
 	connect $user $pass $ip
-done
+done < local_ips.txt
 
 
 # Connect to setup session
