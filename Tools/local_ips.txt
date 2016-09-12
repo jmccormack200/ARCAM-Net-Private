@@ -1,5 +1,5 @@
-Isaac
-Richard
 Dijkstra
-Alan
 Albert
+Alan
+Richard
+Isaac
