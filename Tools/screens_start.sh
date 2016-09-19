@@ -17,6 +17,10 @@ host=$(hostname)
 #Create file of local ubuntu ips
 avahi-browse -tl _workstation._tcp | grep IPv4 | awk '{print $4}' > local_ips.txt
 
+#!/bin/bash
+
+ 
+
 
 #read file line by line
 while read ip; do
