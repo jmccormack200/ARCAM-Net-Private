@@ -4,6 +4,6 @@
 
 echo "Connnecting to $1@$3..."
 
-ARCAM_UP="sudo bash $(pwd)/arcam_up.sh" 
+ARCAM_UP="gksudo bash $(pwd)/arcam_up.sh" 
 
 sshpass -p $2 ssh -tt -X $1@$3 $ARCAM_UP
