@@ -1,8 +1,8 @@
 #!/bin/bash
 #arcam_up.sh $1=user $2=pass $3=hostname
 
-workDir1='~/ARCAM-Net-Public/Tools/'
-workDir2='~/ARCAM-Net-Private/Tools/'
+workDir1="$(pwd)/ARCAM-Net-Public/Tools/"
+workDir2="$(pwd)/ARCAM-Net-Private/Tools/"
 
 sleep 5
 
