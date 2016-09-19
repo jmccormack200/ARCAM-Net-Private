@@ -21,9 +21,9 @@ connect(){
 
 	tmux split-window -v
 
-	tmux select-pane -t 0
+	tmux select-pane -t $4
 
-	ssh="sshpass -p $2 ssh -X $1@192.168.1.$3"
+	ssh="sshpass -p $2 ssh -X $1@$3"
 	tmux send-keys "$ssh" C-m
 	
 	tmux send-keys "echo $pass | sudo -S batctl o -w" C-m
@@ -33,39 +33,24 @@ user='vtclab'
 pass='vtclab'
 
 
-# IP List
-# 192.168.1.100
-# 192.168.1.101
-# 192.168.1.102
-# 192.168.1.106
-# 192.168.1.107
-# 192.168.1.109
-
-#IP = (100, 101, 102, 106, 107, 109)
-
-IP[0]="100"
-IP[1]="101"
-IP[2]="102"
-IP[3]="106"
-IP[4]="107"
-IP[5]="109"
 
 # Start Session
 tmux -2 new-session -d -s $SESSION
 
-next=0
+#read file line by line
+n=0
+while read ip; do
 
-for ip in "${IP[@]}"
-do
 	tmux split-window -v
 	tmux select-pane -t next
 
 	tmux select-layout even-vertical
 	
-	connect $user $pass $ip
+	connect $user $pass "$ip.local" n
 
-	next= next + 1
-done
+	n=$[$n+1]
+
+done < local_ips.txt
 
 
 # Connect to setup session

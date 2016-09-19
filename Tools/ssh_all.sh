@@ -20,3 +20,7 @@ done < local_ips.txt
 
 echo "Connecting $host..."
 xterm -title $host &
+
+sleep 20 
+
+sudo ./batman_monitor.sh

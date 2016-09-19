@@ -19,15 +19,24 @@ echo $2 | sudo -S ifconfig tun0 down
 
 echo $2 | sudo -S python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45 &
 
-sleep 10
+sleep 5
 echo "Waiting for tun0 setup..."
-sleep 10 
+sleep 5
 echo "Waiting..."
-sleep 10./
+sleep 5
 
-echo $2 | sudo -S bash raiseBatSignal.sh
+n=0
+until [ $n -ge 5 ]
+do
+  echo "Connecting Batman..."
+  echo $2 | sudo -S bash raiseBatSignal.sh && break  
+  n=$[$n+1]
+  sleep 5
+done
 
-last=$(ifconfig eth0 || ifconfig eth1 || ifconfig eth2 | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
+ethX=$(ifconfig | grep eth | awk '{print $1}')
+
+last=$(ifconfig $ethX  | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
 
 batip="192.168.200.$last"
 
@@ -37,4 +46,6 @@ echo $2 | sudo -S ifconfig bat0 $batip
 
 sleep 10
 
-xterm -title "$3 monitor" echo $2 | sudo -S batctl o -w
+batmonitor="batctl o -w"
+
+xterm -title "$3 monitor" -e $batmonitor
