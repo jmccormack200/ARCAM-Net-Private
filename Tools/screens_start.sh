@@ -22,10 +22,10 @@ avahi-browse -tl _workstation._tcp | grep IPv4 | awk '{print $4}' > local_ips.tx
 while read ip; do
 	#connect each machine
 	echo "Connecting $ip..."
-	connectusr='bash connect.sh $user $pass $ip'
+	connectusr="bash connect.sh $user $pass $ip.local"
 	xterm -title $ip -e $connectusr &
 done < local_ips.txt
 
 echo "Connecting $host..."
-connecthost='bash connect.sh $user $pass $host'
+connecthost="bash connect.sh $user $pass $host.local"
 xterm -title $host -e $connecthost &

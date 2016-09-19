@@ -1,19 +1,25 @@
 #!/bin/bash
 #connect.sh $1=user $2=pass $3=hostname
 
-workDir="/ARCAM-Net-Public/Tools/"
+workDir1="/ARCAM-Net-Public/Tools/"
+workDir2="/ARCAM-Net-Private/Tools/"
 
-ip='$1@$3.local'
-host=$(hostname)
+echo "Connnecting to $1@$3..."
+sshpass -p $2 ssh -tt -X $1@$3
+sleep 5
 
-if[$3 -ne $host];then
-	echo $2 | sudo -S sshpass -p $2 ssh -X 
+echo "Connnected to $(hostname)"
+sleep 5
+
+
+if(cd $workDir1); then
+else
+	cd $workDir2
 fi
+
 
 echo $2 | sudo -S ifconfig bat0 down
 echo $2 | sudo -S ifconfig tun0 down
-
-cd $workDir
 
 echo $2 | sudo -S python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45 &
 
@@ -21,7 +27,7 @@ sleep 10
 echo "Waiting for tun0 setup..."
 sleep 10 
 echo "Waiting..."
-sleep 10
+sleep 10./
 
 echo $2 | sudo -S bash raiseBatSignal.sh
 
