@@ -37,5 +37,4 @@ echo $2 | sudo -S ifconfig bat0 $batip
 
 sleep 10
 
-
-echo $2 | sudo -S batctl o -w
+xterm -title "$3 monitor" echo $2 | sudo -S batctl o -w
