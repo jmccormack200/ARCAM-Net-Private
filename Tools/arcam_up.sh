@@ -27,7 +27,7 @@ sleep 10./
 
 echo $2 | sudo -S bash raiseBatSignal.sh
 
-last=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
+last=$($(ifconfig eth0 || ifconfig eth1 || ifconfig eth2) | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
 
 batip="192.168.200.$last"
 
