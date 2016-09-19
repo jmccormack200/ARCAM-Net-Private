@@ -17,7 +17,7 @@ cd $workDir1 || cd $workDir2
 echo $2 | sudo -S ifconfig bat0 down
 echo $2 | sudo -S ifconfig tun0 down
 
-echo $2 | sudo -S python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45 &
+echo $2 | gksudo -S python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45 &
 
 sleep 10
 echo "Waiting for tun0 setup..."
