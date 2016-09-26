@@ -47,3 +47,5 @@ echo $2 | sudo -S ifconfig bat0 $batip
 sleep 10
 
 batmonitor="batctl o -w"
+
+$batmonitor
