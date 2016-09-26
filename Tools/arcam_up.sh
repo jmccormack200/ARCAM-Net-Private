@@ -31,7 +31,7 @@ do
   echo "Connecting Batman..."
   echo $2 | sudo -S bash raiseBatSignal.sh && break  
   n=$[$n+1]
-  sleep 5
+  sleep 20
 done
 
 ethX=$(ifconfig | grep eth | awk '{print $1}')
