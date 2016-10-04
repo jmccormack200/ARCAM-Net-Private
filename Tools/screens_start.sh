@@ -34,4 +34,3 @@ echo "Connecting $host..."
 connecthost="bash connect.sh $user $pass $host.local"
 xterm -title $host -e $connecthost &
 
-batctl dc -w

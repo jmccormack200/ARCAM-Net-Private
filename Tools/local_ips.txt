@@ -1,5 +1,5 @@
 Alan
-Isaac
 Dijkstra
-Albert
 Richard
+Albert
+Isaac

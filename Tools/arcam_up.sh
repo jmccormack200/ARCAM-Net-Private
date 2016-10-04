@@ -2,8 +2,8 @@
 #arcam_up.sh $1=user $2=pass $3=hostname
 
 #Configuration variables
-workDir1="~/ARCAM-Net-Public/Tools/"
-workDir2="~/ARCAM-Net-Private/Tools/"
+workDir1="$(pwd)/ARCAM-Net-Public/Tools/"
+workDir2="$(pwd)/ARCAM-Net-Private/Tools/"
 meshiface="bat0"
 physiface="tun0"
 tun0Script="python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45"
