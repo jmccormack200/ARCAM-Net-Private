@@ -1,5 +1,5 @@
-Dijkstra
 Alan
-Richard
-Albert
 Isaac
+Dijkstra
+Albert
+Richard

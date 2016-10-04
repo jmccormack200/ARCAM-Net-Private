@@ -1,51 +1,79 @@
 #!/bin/bash
 #arcam_up.sh $1=user $2=pass $3=hostname
 
-workDir1="$(pwd)/ARCAM-Net-Public/Tools/"
-workDir2="$(pwd)/ARCAM-Net-Private/Tools/"
+#Configuration variables
+workDir1="~/ARCAM-Net-Public/Tools/"
+workDir2="~/ARCAM-Net-Private/Tools/"
+meshiface="bat0"
+physiface="tun0"
+tun0Script="python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45"
+bat0Script="bash raiseBatSignal.sh"
+IPconfigScript="avahi-autoipd"
+
+#configuration translation
+script="Script"
+physScript="$physiface$script"
+meshScript="$meshiface$script"
+monitorScript="batctl o -w"
+
+echo "Running configuration..."
+echo "		meshiface=$meshiface"
+echo "		physiface=$physiface"
+echo "		physScript=${!physScript}"
+echo "		meshScript=${!meshScript}"
+echo "		IPconfigScript=$IPconfigScript"
+echo "		monitorScript=$monitorScript"
 
 sleep 5
 
 echo "Connnected to $(hostname)"
+
 sleep 5
 
-
+#change to working directory
 cd $workDir1 || cd $workDir2
 
 
+#shutdown leftover interfaces
+echo $2 | sudo -S ifconfig $meshiface down
+echo $2 | sudo -S ifconfig $physiface down
 
-echo $2 | sudo -S ifconfig bat0 down
-echo $2 | sudo -S ifconfig tun0 down
+#Layer 1 setup
+echo $2 | sudo -S ${!physScript} &
 
-echo $2 | sudo -S python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45 &
-
+#Wait
 sleep 5
-echo "Waiting for tun0 setup..."
+echo "Waiting for $physiface setup..."
 sleep 5
 echo "Waiting..."
 sleep 5
 
+#Layer 2 Setup
 n=0
 until [ $n -ge 5 ]
 do
-  echo "Connecting Batman..."
-  echo $2 | sudo -S bash raiseBatSignal.sh && break  
+  echo "Connecting $meshiface..."
+  echo $2 | sudo -S ${!meshScript} && break  
   n=$[$n+1]
   sleep 20
 done
 
-ethX=$(ifconfig | grep eth | awk '{print $1}')
+#Configure IP
 
-last=$(ifconfig $ethX  | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
+echo $2 | sudo -S $IPconfigScript $meshiface &
+#echo $2 | sudo -S $IPconfigScript $physiface &
 
-batip="192.168.200.$last"
+#ethX=$(ifconfig | grep eth | awk '{print $1}')
 
-echo "Ip resolved to $batip"
+#last=$(ifconfig $ethX  | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
 
-echo $2 | sudo -S ifconfig bat0 $batip
+#batip="192.168.200.$last"
 
-sleep 10
+#echo "Ip resolved to $batip"
 
-batmonitor="batctl o -w"
+#echo $2 | sudo -S ifconfig bat0 $batip
+#echo $2 | sudo -S ifconfig tun0 $batip
 
-$batmonitor
+sleep 15
+
+$monitorScript

@@ -21,3 +21,4 @@ done < local_ips.txt
 echo "Connecting $host..."
 xterm -title $host &
 
+
