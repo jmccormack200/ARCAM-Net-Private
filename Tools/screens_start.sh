@@ -19,7 +19,9 @@ avahi-browse -tl _workstation._tcp | grep IPv4 | awk '{print $4}' > local_ips.tx
 
 #!/bin/bash
 
- 
+echo "Connecting $host..."
+connecthost="bash connect.sh $user $pass $host.local"
+xterm -title $host -e $connecthost &
 
 
 #read file line by line

@@ -1,5 +1,5 @@
-Alan
-Dijkstra
-Richard
-Albert
 Isaac
+Albert
+Richard
+Dijkstra
+Alan

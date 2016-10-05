@@ -5,9 +5,11 @@
 workDir1="$(pwd)/ARCAM-Net-Public/Tools/"
 workDir2="$(pwd)/ARCAM-Net-Private/Tools/"
 meshiface="bat0"
-physiface="tun0"
-tun0Script="python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45"
-bat0Script="bash raiseBatSignal.sh"
+physiface="tap0"
+
+#memory variables
+tap0Script="python ../Flowgraphs/broadcastwithFreqNoMac.py --tx-gain 45 --rx-gain 45"
+bat0Script="bash raiseBatSignal.sh $physiface"
 IPconfigScript="avahi-autoipd"
 
 #configuration translation
@@ -16,7 +18,7 @@ physScript="$physiface$script"
 meshScript="$meshiface$script"
 monitorScript="batctl o -w"
 
-echo "Running configuration..."
+echo "Running configuration..." 
 echo "		meshiface=$meshiface"
 echo "		physiface=$physiface"
 echo "		physScript=${!physScript}"
