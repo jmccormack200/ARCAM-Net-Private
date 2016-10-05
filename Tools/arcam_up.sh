@@ -62,18 +62,18 @@ done
 
 #Configure IP
 
-echo $2 | sudo -S $IPconfigScript $meshiface &
+#echo $2 | sudo -S $IPconfigScript $meshiface &
 #echo $2 | sudo -S $IPconfigScript $physiface &
 
-#ethX=$(ifconfig | grep eth | awk '{print $1}')
+ethX=$(ifconfig | grep eth | awk '{print $1}')
 
-#last=$(ifconfig $ethX  | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
+last=$(ifconfig $ethX  | grep 'inet addr:' | cut -d: -f2 | awk -F'.' '{print $4}' | awk '{print $1}')
 
-#batip="192.168.200.$last"
+batip="192.168.200.$last"
 
-#echo "Ip resolved to $batip"
+echo "Ip resolved to $batip"
 
-#echo $2 | sudo -S ifconfig bat0 $batip
+echo $2 | sudo -S ifconfig bat0 $batip
 #echo $2 | sudo -S ifconfig tun0 $batip
 
 sleep 15
