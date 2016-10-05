@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Broadcastwithfreqnomac
-# Generated: Mon Mar  7 14:35:01 2016
+# Generated: Wed Oct  5 17:22:12 2016
 ##################################################
 import threading
 
@@ -37,7 +37,7 @@ import wx
 
 class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
 
-    def __init__(self, ampl=0.7, args='', arq_timeout=.1*0 + 0.04, dest_addr=-1, iface='tun0', max_arq_attempts=5 * 2, mtu=128, ogradio_addr=0, ogrx_freq=915e6, ogtx_freq=915e6, port="12345", rate=1e6, rx_antenna="TX/RX", rx_gain=65-20, rx_lo_offset=0, samps_per_sym=4, tx_gain=45, tx_lo_offset=0):
+    def __init__(self, ampl=0.7, args='', arq_timeout=.1*0 + 0.04, dest_addr=-1, iface='tap0', max_arq_attempts=5 * 2, mtu=128, ogradio_addr=0, ogrx_freq=915e6, ogtx_freq=915e6, port="12345", rate=1e6, rx_antenna="TX/RX", rx_gain=65-20, rx_lo_offset=0, samps_per_sym=4, tx_gain=45, tx_lo_offset=0):
         grc_wxgui.top_block_gui.__init__(self, title="Broadcastwithfreqnomac")
 
         self._lock = threading.RLock()
@@ -153,18 +153,18 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
         )
         self.GridAdd(self.wxgui_scopesink2_0_0.win, 0, 0, 1, 1)
         self.gmsk_radio_0 = gmsk_radio(
-            access_code_threshold=0 + 12 + 4*0,
-            samps_per_sym=samps_per_sym,
-            tx_lo_offset=tx_lo_offset,
-            rx_lo_offset=rx_lo_offset,
-            ampl=ampl,
-            rx_gain=user_rx_gain,
-            rx_freq=rx_freq,
-            rx_ant=rx_antenna,
-            tx_freq=tx_freq,
-            tx_gain=user_tx_gain,
-            args=args,
             rate=samp_rate,
+            args=args,
+            tx_gain=user_tx_gain,
+            tx_freq=tx_freq,
+            rx_ant=rx_antenna,
+            rx_freq=rx_freq,
+            rx_gain=user_rx_gain,
+            ampl=ampl,
+            rx_lo_offset=rx_lo_offset,
+            tx_lo_offset=tx_lo_offset,
+            samps_per_sym=samps_per_sym,
+            access_code_threshold=0 + 12 + 4*0,
         )
         self.blocks_tuntap_pdu_0 = blocks.tuntap_pdu(iface, mtu*0 + 1532, False)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((1, ))
@@ -383,7 +383,7 @@ def argument_parser():
         "-d", "--dest-addr", dest="dest_addr", type="intx", default=-1,
         help="Set Destination address [default=%default]")
     parser.add_option(
-        "", "--iface", dest="iface", type="string", default='tun0',
+        "", "--iface", dest="iface", type="string", default='tap0',
         help="Set Interface name [default=%default]")
     parser.add_option(
         "", "--max-arq-attempts", dest="max_arq_attempts", type="intx", default=5 * 2,
@@ -434,16 +434,6 @@ def main(top_block_cls=broadcastwithFreqNoMac, options=None):
     tb = top_block_cls(ampl=options.ampl, args=options.args, arq_timeout=options.arq_timeout, dest_addr=options.dest_addr, iface=options.iface, max_arq_attempts=options.max_arq_attempts, mtu=options.mtu, ogradio_addr=options.ogradio_addr, ogrx_freq=options.ogrx_freq, ogtx_freq=options.ogtx_freq, port=options.port, rate=options.rate, rx_antenna=options.rx_antenna, rx_gain=options.rx_gain, rx_lo_offset=options.rx_lo_offset, samps_per_sym=options.samps_per_sym, tx_gain=options.tx_gain, tx_lo_offset=options.tx_lo_offset)
     tb.Start(True)
     tb.Wait()
-#    try:
-#        pid = os.fork()
-#        if pid > 0:
-#            # Exit parent process
-#            sys.exit(0)
-#	else:
-#	    tb.Wait()
-#    except OSError, e:
-#        print >> sys.stderr, "fork failed: %d (%s)" % (e.errno, e.strerror)
-#        sys.exit(1)	
 
 
 if __name__ == '__main__':
