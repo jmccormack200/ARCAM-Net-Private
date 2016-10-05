@@ -30,7 +30,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(13, 10)</value>
+      <value>(8, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -140,7 +140,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(183, 12)</value>
+      <value>(176, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -179,7 +179,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(152, 579)</value>
+      <value>(16, 539)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -462,7 +462,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 11)</value>
+      <value>(272, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -505,7 +505,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(12, 68)</value>
+      <value>(8, 67)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1100,7 +1100,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(776, 267)</value>
+      <value>(824, 259)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1194,7 +1194,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 3)</value>
+      <value>(824, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1273,7 +1273,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(448, 163)</value>
+      <value>(392, 99)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1387,81 +1387,6 @@
     </param>
   </block>
   <block>
-    <key>ofdm_radio</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(800, 3)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>ofdm_radio_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rx_lo_offset</key>
-      <value>rx_lo_offset</value>
-    </param>
-    <param>
-      <key>rx_ant</key>
-      <value>rx_antenna</value>
-    </param>
-    <param>
-      <key>rx_freq</key>
-      <value>rx_freq</value>
-    </param>
-    <param>
-      <key>rx_gain</key>
-      <value>user_rx_gain</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>tx_lo_offset</key>
-      <value>tx_lo_offset</value>
-    </param>
-    <param>
-      <key>tx_freq</key>
-      <value>tx_freq</value>
-    </param>
-    <param>
-      <key>tx_gain</key>
-      <value>user_tx_gain</value>
-    </param>
-    <param>
-      <key>args</key>
-      <value>args</value>
-    </param>
-  </block>
-  <block>
     <key>parameter</key>
     <param>
       <key>alias</key>
@@ -1477,7 +1402,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 163)</value>
+      <value>(256, 211)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1638,6 +1563,10 @@
     <param>
       <key>autoscale</key>
       <value>False</value>
+    </param>
+    <param>
+      <key>axislabels</key>
+      <value>True</value>
     </param>
     <param>
       <key>alias</key>
@@ -1997,6 +1926,10 @@
     <param>
       <key>autoscale</key>
       <value>False</value>
+    </param>
+    <param>
+      <key>axislabels</key>
+      <value>True</value>
     </param>
     <param>
       <key>alias</key>
@@ -2410,7 +2343,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(10, 254)</value>
+      <value>(608, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2496,7 +2429,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(124, 168)</value>
+      <value>(128, 179)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2539,7 +2472,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 19)</value>
+      <value>(384, 3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2676,7 +2609,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(10, 168)</value>
+      <value>(8, 179)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2715,7 +2648,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1232, 203)</value>
+      <value>(1144, 155)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3242,48 +3175,6 @@
     <sink_block_id>blocks_tuntap_pdu_0</sink_block_id>
     <source_key>msg_out</source_key>
     <sink_key>pdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ofdm_radio_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ofdm_radio_0</source_block_id>
-    <sink_block_id>wxgui_scopesink2_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ofdm_radio_0</source_block_id>
-    <sink_block_id>wxgui_waterfallsink2_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ofdm_radio_0</source_block_id>
-    <sink_block_id>blocks_tag_debug_0_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ofdm_radio_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ofdm_radio_0</source_block_id>
-    <sink_block_id>wxgui_scopesink2_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>ofdm_radio_0</source_block_id>
-    <sink_block_id>blocks_message_debug_0</sink_block_id>
-    <source_key>msg_out</source_key>
-    <sink_key>print</sink_key>
   </connection>
   <connection>
     <source_block_id>single_pole_iir_filter_xx_0</source_block_id>

@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Broadcastwithfreqnomac
-# Generated: Wed Oct  5 17:22:12 2016
+# Generated: Wed Oct  5 18:03:21 2016
 ##################################################
 import threading
 
@@ -153,18 +153,18 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
         )
         self.GridAdd(self.wxgui_scopesink2_0_0.win, 0, 0, 1, 1)
         self.gmsk_radio_0 = gmsk_radio(
-            rate=samp_rate,
+            access_code_threshold=0 + 12 + 4*0,
+            ampl=ampl,
             args=args,
-            tx_gain=user_tx_gain,
-            tx_freq=tx_freq,
+            rate=samp_rate,
             rx_ant=rx_antenna,
             rx_freq=rx_freq,
             rx_gain=user_rx_gain,
-            ampl=ampl,
             rx_lo_offset=rx_lo_offset,
-            tx_lo_offset=tx_lo_offset,
             samps_per_sym=samps_per_sym,
-            access_code_threshold=0 + 12 + 4*0,
+            tx_freq=tx_freq,
+            tx_gain=user_tx_gain,
+            tx_lo_offset=tx_lo_offset,
         )
         self.blocks_tuntap_pdu_0 = blocks.tuntap_pdu(iface, mtu*0 + 1532, False)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((1, ))
