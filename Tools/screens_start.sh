@@ -32,7 +32,5 @@ while read ip; do
 	xterm -title $ip -e $connectusr &
 done < local_ips.txt
 
-echo "Connecting $host..."
-connecthost="bash connect.sh $user $pass $host.local"
-xterm -title $host -e $connecthost &
+
 
