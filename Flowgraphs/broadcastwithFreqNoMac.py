@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Broadcastwithfreqnomac
-# Generated: Wed Oct  5 18:03:21 2016
+# Generated: Wed Nov 16 15:48:36 2016
 ##################################################
 import threading
 
@@ -37,8 +37,10 @@ import wx
 
 class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
 
-    def __init__(self, ampl=0.7, args='', arq_timeout=.1*0 + 0.04, dest_addr=-1, iface='tap0', max_arq_attempts=5 * 2, mtu=128, ogradio_addr=0, ogrx_freq=915e6, ogtx_freq=915e6, port="12345", rate=1e6, rx_antenna="TX/RX", rx_gain=65-20, rx_lo_offset=0, samps_per_sym=4, tx_gain=45, tx_lo_offset=0):
+    def __init__(self, ampl=0.7, args='', arq_timeout=.1*0 + 0.04, dest_addr=-1, iface='tun0', max_arq_attempts=5 * 2, mtu=128, ogradio_addr=0, ogrx_freq=915e6, ogtx_freq=915e6, port='12345', rate=1e6, rx_antenna='TX/RX', rx_gain=65-20, rx_lo_offset=0, samps_per_sym=4, tx_gain=45, tx_lo_offset=0):
         grc_wxgui.top_block_gui.__init__(self, title="Broadcastwithfreqnomac")
+        _icon_path = "/usr/share/icons/hicolor/32x32/apps/gnuradio-grc.png"
+        self.SetIcon(wx.Icon(_icon_path, wx.BITMAP_TYPE_ANY))
 
         self._lock = threading.RLock()
 
@@ -82,7 +84,7 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
         	sizer=_user_tx_gain_sizer,
         	value=self.user_tx_gain,
         	callback=self.set_user_tx_gain,
-        	label="TX Gain",
+        	label='TX Gain',
         	converter=forms.float_converter(),
         	proportion=0,
         )
@@ -105,7 +107,7 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
         	sizer=_user_rx_gain_sizer,
         	value=self.user_rx_gain,
         	callback=self.set_user_rx_gain,
-        	label="RX Gain",
+        	label='RX Gain',
         	converter=forms.float_converter(),
         	proportion=0,
         )
@@ -140,7 +142,7 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
         self.Add(self._rx_freq_text_box)
         self.wxgui_scopesink2_0_0 = scopesink2.scope_sink_c(
         	self.GetWin(),
-        	title="RX",
+        	title='RX',
         	sample_rate=samp_rate,
         	v_scale=0.02,
         	v_offset=0,
@@ -149,7 +151,7 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
         	xy_mode=False,
         	num_inputs=2,
         	trig_mode=wxgui.TRIG_MODE_NORM,
-        	y_axis_label="Counts",
+        	y_axis_label='Counts',
         )
         self.GridAdd(self.wxgui_scopesink2_0_0.win, 0, 0, 1, 1)
         self.gmsk_radio_0 = gmsk_radio(
@@ -355,8 +357,8 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
     def set_samp_rate(self, samp_rate):
         with self._lock:
             self.samp_rate = samp_rate
-            self.gmsk_radio_0.set_rate(self.samp_rate)
             self.wxgui_scopesink2_0_0.set_sample_rate(self.samp_rate)
+            self.gmsk_radio_0.set_rate(self.samp_rate)
 
     def get_rx_freq(self):
         return self.rx_freq
@@ -369,7 +371,7 @@ class broadcastwithFreqNoMac(grc_wxgui.top_block_gui):
 
 
 def argument_parser():
-    parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
+    parser = OptionParser(usage="%prog: [options]", option_class=eng_option)
     parser.add_option(
         "", "--ampl", dest="ampl", type="eng_float", default=eng_notation.num_to_str(0.7),
         help="Set TX BB amp [default=%default]")
@@ -383,7 +385,7 @@ def argument_parser():
         "-d", "--dest-addr", dest="dest_addr", type="intx", default=-1,
         help="Set Destination address [default=%default]")
     parser.add_option(
-        "", "--iface", dest="iface", type="string", default='tap0',
+        "", "--iface", dest="iface", type="string", default='tun0',
         help="Set Interface name [default=%default]")
     parser.add_option(
         "", "--max-arq-attempts", dest="max_arq_attempts", type="intx", default=5 * 2,
@@ -401,13 +403,13 @@ def argument_parser():
         "", "--ogtx-freq", dest="ogtx_freq", type="eng_float", default=eng_notation.num_to_str(915e6),
         help="Set TX freq [default=%default]")
     parser.add_option(
-        "", "--port", dest="port", type="string", default="12345",
+        "", "--port", dest="port", type="string", default='12345',
         help="Set TCP port [default=%default]")
     parser.add_option(
         "-r", "--rate", dest="rate", type="eng_float", default=eng_notation.num_to_str(1e6),
         help="Set Sample rate [default=%default]")
     parser.add_option(
-        "-A", "--rx-antenna", dest="rx_antenna", type="string", default="TX/RX",
+        "-A", "--rx-antenna", dest="rx_antenna", type="string", default='TX/RX',
         help="Set RX antenna [default=%default]")
     parser.add_option(
         "", "--rx-gain", dest="rx_gain", type="eng_float", default=eng_notation.num_to_str(65-20),

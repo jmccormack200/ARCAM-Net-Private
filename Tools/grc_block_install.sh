@@ -49,10 +49,3 @@ cmake ../
 make
 sudo make install
 sudo ldconfig
-
-
-cd ..
-cd ..
-git clone https://github.com/btrowbridge/alfred-ubuntu.git
-cd alfred-ubuntu
-sudo bash ubuntuAlfredInstall.sh
